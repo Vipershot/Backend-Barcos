@@ -1,6 +1,6 @@
 const express = require("express");
 const { getItems, getItem, createItem } = require("../controllers/ship");
-const { validatorCreateItem } = require("../validator/ship");
+const { validatorCreateItem } = require("../middlewares/validator/ship");
 const router = express.Router();
 
 /* TODO GET,POST,DELETE,PUT */
