@@ -1,5 +1,10 @@
 const express = require("express");
-const { getItems, getItem, createItem } = require("../controllers/ship");
+const {
+  getItems,
+  getItem,
+  createItem,
+  deleteItem,
+} = require("../controllers/ship");
 const { validatorCreateItem } = require("../middlewares/validator/ship");
 const router = express.Router();
 
@@ -8,5 +13,6 @@ const router = express.Router();
 router.get("/", getItems);
 router.get("/:id", getItem);
 router.post("/", validatorCreateItem, createItem);
+router.delete("/delete/:id", deleteItem);
 
 module.exports = router;
