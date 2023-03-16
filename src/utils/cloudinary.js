@@ -10,7 +10,8 @@ cloudinary.config({
 });
 
 const uploadImage = async (filePath) => {
-  await cloudinary.uploader.upload(filePath, { folder: "storage" });
+  const result = await cloudinary.uploader.upload(filePath);
+  return result;
 };
 
 module.exports = { cloudinary, uploadImage };

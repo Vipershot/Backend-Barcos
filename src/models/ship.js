@@ -14,10 +14,8 @@ const shipScheme = new mongoose.Schema(
     shipYear: {
       type: String,
     },
-    image: {
-      tempFilePath: {
-        type: String,
-      },
+    imageUrl: {
+      type: String,
     },
   },
   {

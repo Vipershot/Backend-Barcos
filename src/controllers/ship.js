@@ -23,15 +23,10 @@ const getItem = async (req, res) => {
 };
 
 const createItem = async (req, res) => {
-  console.log("999", req.body);
   try {
     const { body } = req;
-    console.log(body);
-    const ship = await shipModel.create(body);
-    if (req.body?.image) {
-      uploadImage(req.body.image.tempFilePath);
-    }
-    console.log(ship);
+    const result = await uploadImage(req.file.path);
+    const ship = await shipModel.create({ ...body, imageUrl: result.url });
     res.send({ ship });
   } catch (error) {
     res.status(400).json({ message: error.message });
