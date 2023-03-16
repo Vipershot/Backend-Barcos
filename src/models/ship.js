@@ -14,6 +14,9 @@ const shipScheme = new mongoose.Schema(
     shipYear: {
       type: String,
     },
+    imageUrl: {
+      type: String,
+    },
   },
   {
     timestamps: true,
