@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.get("/", getItems);
 router.get("/:id", getItem);
-router.post("/", validatorCreateItem, createItem);
+router.post("/", /* validatorCreateItem, */ createItem);
 router.delete("/delete/:id", deleteItem);
 
 module.exports = router;

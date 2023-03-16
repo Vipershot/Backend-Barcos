@@ -1,4 +1,5 @@
 const { shipModel } = require("../models");
+const { uploadImage } = require("../utils/cloudinary");
 
 const getItems = async (req, res) => {
   try {
@@ -22,9 +23,15 @@ const getItem = async (req, res) => {
 };
 
 const createItem = async (req, res) => {
+  console.log("999", req.body);
   try {
     const { body } = req;
+    console.log(body);
     const ship = await shipModel.create(body);
+    if (req.body?.image) {
+      uploadImage(req.body.image.tempFilePath);
+    }
+    console.log(ship);
     res.send({ ship });
   } catch (error) {
     res.status(400).json({ message: error.message });
