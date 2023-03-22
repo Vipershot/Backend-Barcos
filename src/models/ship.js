@@ -14,8 +14,13 @@ const shipScheme = new mongoose.Schema(
     shipYear: {
       type: String,
     },
-    imageUrl: {
-      type: String,
+    image: {
+      imageUrl: {
+        type: String,
+      },
+      public_Id: {
+        type: String,
+      },
     },
   },
   {

@@ -1,5 +1,5 @@
 const { shipModel } = require("../models");
-const { uploadImage } = require("../utils/cloudinary");
+const { uploadImage, cloudinary } = require("../utils/cloudinary");
 
 const getItems = async (req, res) => {
   try {
@@ -26,8 +26,12 @@ const createItem = async (req, res) => {
   try {
     const { body, file } = req;
     const result = await uploadImage(file.path);
-    const ship = await shipModel.create({ ...body, imageUrl: result.url });
+    const ship = await shipModel.create({
+      ...body,
+      image: { imageUrl: result.url, public_Id: result.public_id },
+    });
     res.send({ ship });
+    console.log(ship);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -35,6 +39,10 @@ const createItem = async (req, res) => {
 
 const deleteItem = async (req, res) => {
   try {
+    const shipId = await shipModel.findById(req.params.id);
+    const imgId = shipId.image.public_Id;
+    await cloudinary.uploader.destroy(imgId);
+
     const ship = await shipModel.findByIdAndDelete(req.params.id);
     if (!ship) {
       return res.status(404).json({ message: "Barco no encontrada" });
