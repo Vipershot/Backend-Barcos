@@ -31,7 +31,6 @@ const createItem = async (req, res) => {
       image: { imageUrl: result.url, public_Id: result.public_id },
     });
     res.send({ ship });
-    console.log(ship);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
