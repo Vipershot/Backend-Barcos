@@ -1,6 +1,11 @@
 const { shipModel } = require("../models");
 const { uploadImage, cloudinary } = require("../utils/cloudinary");
 
+/**
+ * Acceso a listado de ships
+ * @param {*} req
+ * @param {*} res
+ */
 const getItems = async (req, res) => {
   try {
     const ship = await shipModel.find({});
@@ -10,6 +15,12 @@ const getItems = async (req, res) => {
   }
 };
 
+/**
+ * Acceso por id a un ship
+ * @param {*} req
+ * @param {*} res
+ * @returns
+ */
 const getItem = async (req, res) => {
   try {
     const ship = await shipModel.findById(req.params.id);
@@ -22,6 +33,11 @@ const getItem = async (req, res) => {
   }
 };
 
+/**
+ * Creacion de ship
+ * @param {*} req
+ * @param {*} res
+ */
 const createItem = async (req, res) => {
   try {
     const { body, file } = req;
@@ -36,6 +52,12 @@ const createItem = async (req, res) => {
   }
 };
 
+/**
+ * Eliminacion de ship mediante ID
+ * @param {*} req
+ * @param {*} res
+ * @returns
+ */
 const deleteItem = async (req, res) => {
   try {
     const shipId = await shipModel.findById(req.params.id);
@@ -52,6 +74,12 @@ const deleteItem = async (req, res) => {
   }
 };
 
+/**
+ * Actualizacion de la info Ship
+ * @param {*} req
+ * @param {*} res
+ * @returns
+ */
 const updateItem = async (req, res) => {
   try {
     const { body, file } = req;

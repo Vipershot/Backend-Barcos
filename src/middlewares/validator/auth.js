@@ -1,6 +1,9 @@
 const { check } = require("express-validator");
 const validateResults = require("../../utils/handleValidator");
 
+/**
+ * Validacion de los campos registro
+ */
 const validatorRegister = [
   check("firstName").exists().notEmpty().isLength({ min: 3, max: 99 }),
   check("lastName").exists().notEmpty().isLength({ min: 3, max: 99 }),
@@ -13,6 +16,9 @@ const validatorRegister = [
   },
 ];
 
+/**
+ * Validacion login
+ */
 const validatorLogin = [
   check("email").exists().notEmpty().isEmail(),
   check("password").exists().notEmpty().isLength({ min: 3, max: 15 }),

@@ -8,12 +8,20 @@ const {
 } = require("../controllers/ship");
 const { validatorCreateItem } = require("../middlewares/validator/ship");
 const router = express.Router();
+const authMiddleware = require("../middlewares/validator/session");
+const checkRole = require("../middlewares/validator/role");
 
 /* TODO GET,POST,DELETE,PUT */
 
-router.get("/", getItems);
+router.get("/", authMiddleware, getItems);
 router.get("/:id", getItem);
-router.post("/", /* validatorCreateItem, */ createItem);
+router.post(
+  "/",
+  authMiddleware,
+  checkRole(["admin"]),
+  validatorCreateItem,
+  createItem
+);
 router.delete("/:id", deleteItem);
 router.put("/:id", updateItem);
 
