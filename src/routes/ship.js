@@ -13,13 +13,15 @@ const checkRole = require("../middlewares/validator/role");
 
 /* TODO GET,POST,DELETE,PUT */
 
-router.get("/", authMiddleware, getItems);
+router.get("/",
+  // authMiddleware,
+  getItems);
 router.get("/:id", getItem);
 router.post(
   "/",
-  authMiddleware,
-  checkRole(["admin"]),
-  validatorCreateItem,
+  // authMiddleware,
+  // checkRole(["admin"]),
+  // validatorCreateItem,
   createItem
 );
 router.delete("/:id", deleteItem);
