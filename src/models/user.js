@@ -24,8 +24,12 @@ const UserScheme = new mongoose.Schema(
     },
     role: {
       type: ["user", "userService", "admin"],
-      default: "user",
+      default: null,
     },
+    ships:{
+      type: [],
+      default:[]
+    }
   },
   {
     timestamps: true /* TODO createAt, updateAt */,
