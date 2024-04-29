@@ -30,4 +30,6 @@ const registerCtrl = async (req, res) => {
 };
 
 
+
+
 module.exports = { registerCtrl };

@@ -1,5 +1,5 @@
 const express = require("express");
-const {registerCtrl} = require("../controllers/userShips")
+const {registerCtrl, editUserCtrl} = require("../controllers/userShips")
 const { validatorRegister } = require("../middlewares/validator/auth");
 const router = express.Router();
 

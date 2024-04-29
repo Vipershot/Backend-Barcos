@@ -9,6 +9,7 @@ const { usersModel } = require("../../models");
  * @param {*} next
  */
 const authMiddleware = async (req, res, next) => {
+  console.log(req.headers)
   try {
     if (!req.headers.authorization) {
       handleHttpError(res, "NOT_TOKEN", 401);
