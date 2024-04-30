@@ -6,5 +6,6 @@ const router = express.Router();
 /* TODO GET,POST,DELETE,PUT */
 
 router.post("/register", validatorRegister, registerCtrl);
+router.put("/:id", editUserCtrl);
 
 module.exports = router;

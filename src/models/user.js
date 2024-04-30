@@ -24,7 +24,7 @@ const UserScheme = new mongoose.Schema(
     },
     role: {
       type: ["user", "userService", "admin"],
-      default: null,
+      default: [],
     },
     ships:{
       type: [],

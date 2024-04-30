@@ -11,6 +11,7 @@ const validatorRegister = [
   check("age").exists().notEmpty().isNumeric({ min: 18, max: 100 }),
   check("password").exists().notEmpty().isLength({ min: 3, max: 15 }),
   check("email").exists().notEmpty().isEmail(),
+  check("role").optional({ checkFalsy: true }).isArray(),
   (req, res, next) => {
     return validateResults(req, res, next);
   },
