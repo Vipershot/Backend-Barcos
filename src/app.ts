@@ -1,9 +1,9 @@
 require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const multer = require("multer");
-const morgan = require("morgan");
-const path = require("path");
+import express from "express";
+import cors from "cors";
+import multer from "multer";
+import morgan from "morgan";
+import path from "path";
 const dbConnect = require("./config/mongo");
 const app = express();
 
