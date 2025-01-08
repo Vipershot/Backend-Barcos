@@ -38,7 +38,7 @@ const registerCtrl = async (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-const editUserCtrl = async (req, res) => {
+/* const editUserCtrl = async (req, res) => {
    try {
       // Extraer la información del usuario autenticado
       const userId = req.user.id; // Asume que el middleware de autenticación añade el usuario a req.user
@@ -67,9 +67,9 @@ const editUserCtrl = async (req, res) => {
    } catch (error) {
       handleHttpError(res, "ERROR_EDIT_USER");
    }
-  };
+  }; */
 
 
 
 
-module.exports = { registerCtrl, editUserCtrl };
+module.exports = { registerCtrl/* , editUserCtrl */ };
