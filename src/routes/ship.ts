@@ -26,13 +26,17 @@ router.get("/:id", (request: Request, response: Response) =>
 );
 router.post(
   "/",
-/*   authMiddleware,
+  /*   authMiddleware,
   checkRole(["admin"]), */
   /* validatorCreateItem, */
   (request: Request, response: Response) =>
     controller.createShip(request, response)
 );
-router.delete("/delete/:id", (request: Request, response: Response) => controller.deleteShip(request, response));
-router.put("/:id", updateItem);
+router.delete("/delete/:id", (request: Request, response: Response) =>
+  controller.deleteShip(request, response)
+);
+router.put("/edit/:id", (request: Request, response: Response) =>
+  controller.updateShip(request, response)
+);
 
 module.exports = router;

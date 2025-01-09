@@ -55,4 +55,17 @@ export class ShipsController {
       return res.status(400).json({ message: "An unknown error occurred" });
     }
   }
+
+  public async updateShip(req: Request, res: Response): Promise<Response> {
+    try {
+      const response = await this.shipsService.updateShip(req.params.id, req.body);
+
+      return res.json(response);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return res.status(400).json({ message: error.message });
+      }
+      return res.status(400).json({ message: "An unknown error occurred" });
+    }
+  }
 }
