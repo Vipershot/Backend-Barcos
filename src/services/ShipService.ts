@@ -1,3 +1,4 @@
+import { NotFoundError } from "../errors/NotFoundError";
 import { shipModel } from "../models";
 import { uploadImage } from "../utils/cloudinary";
 
@@ -12,12 +13,13 @@ export class ShipsService {
   }
 
   public async getShip(id: string): Promise<unknown> {
-    try {
-      const response = await shipModel.findById(id);
-      return response;
-    } catch (error: unknown) {
-      throw new Error("An unknown error occurred");
+    const response = await shipModel.findById(id);
+
+    if(!response) {
+      throw new NotFoundError(`ship with id: ${id} not found`);
     }
+
+    return response;
   }
 
   public async createShip(body: any, file: any): Promise<unknown> {
