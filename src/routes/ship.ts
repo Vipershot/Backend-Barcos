@@ -3,12 +3,6 @@ import { ShipsController } from "../controllers/ShipsController";
 import { ShipsService } from "../services/ShipService";
 
 const express = require("express");
-const {
-  getItem,
-  createItem,
-  deleteItem,
-  updateItem,
-} = require("../controllers/ship");
 const { validatorCreateItem } = require("../middlewares/validator/ship");
 const router = express.Router();
 const authMiddleware = require("../middlewares/validator/session");
