@@ -1,11 +1,12 @@
 require("dotenv").config();
-import "express-async-errors"
+import "express-async-errors";
 import express from "express";
 import cors from "cors";
 import multer from "multer";
 import morgan from "morgan";
 import path from "path";
 import { errorHandler } from "./middlewares/errorHandler";
+const router  = require("./routes");
 const dbConnect = require("./config/mongo");
 const app = express();
 
@@ -21,8 +22,9 @@ const storage = multer.diskStorage({
 });
 app.use(multer({ storage }).single("image"));
 const port = process.env.PORT || 3000;
+app.use("/api", router);
 app.use(errorHandler);
-app.use("/api", require("./routes"));
+
 app.listen(port, () => {
   console.log(`Tu app esta lista por el puerto ${port}`);
 });
