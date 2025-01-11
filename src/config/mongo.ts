@@ -1,3 +1,5 @@
+import { Error } from "mongoose";
+
 const mongoose = require("mongoose");
 
 const dbConnect = () => {
@@ -8,7 +10,7 @@ const dbConnect = () => {
       useUnifiedTopology: true,
     })
     .then(() => console.log(`*** CONEXION EXITOSA ***`))
-    .catch((error) => console.log(error));
+    .catch((error:Error) => console.log(error));
 };
 
 module.exports = dbConnect;

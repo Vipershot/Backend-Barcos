@@ -8,7 +8,7 @@ export class ShipsService {
       const response = await shipModel.find({});
       return response;
     } catch (error: unknown) {
-      throw new Error("An unknown error occurred");
+      throw new NotFoundError("An error occurred while fetching ships");
     }
   }
 
@@ -16,7 +16,7 @@ export class ShipsService {
     const response = await shipModel.findById(id);
 
     if(!response) {
-      throw new NotFoundError(`ship with id: ${id} not found`);
+      throw new NotFoundError(`Ship with id: ${id} not found`);
     }
 
     return response;
@@ -32,7 +32,7 @@ export class ShipsService {
       });
       return response;
     } catch (error: unknown) {
-      throw new Error("An error occurred while creating the ship");
+      throw new NotFoundError("An error occurred while creating a ship");
     }
   }
 
@@ -41,7 +41,7 @@ export class ShipsService {
       const response = await shipModel.findByIdAndDelete(id);
       return response;
     } catch (error: unknown) {
-      throw new Error("An unknown error occurred");
+      throw new NotFoundError("An error occurred while deleting a ship");
     }
   }
 
@@ -49,7 +49,7 @@ export class ShipsService {
     try {
       const response = await shipModel.findById(id);
       if (!response) {
-        throw new Error("Ship not found");
+        throw new NotFoundError(`Ship with id: ${id} not found`);
       }
       response.shipName =
         body.shipName !== "" || null ? body.shipName : response.shipName;
@@ -62,7 +62,7 @@ export class ShipsService {
       await response.save();
       return response;
     } catch (error: unknown) {
-      throw new Error("An unknown error occurred");
+      throw new NotFoundError("An error occurred while updating a ship");
     }
   }
 }
