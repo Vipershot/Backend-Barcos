@@ -4,12 +4,15 @@ import { uploadImage } from "../utils/cloudinary";
 
 export class ShipsService {
   public async getShips(): Promise<unknown> {
-    try {
+
       const response = await shipModel.find({});
+
+      if(!response) {
+        throw new NotFoundError("No ships found");
+      }
+
       return response;
-    } catch (error: unknown) {
-      throw new NotFoundError("An error occurred while fetching ships");
-    }
+
   }
 
   public async getShip(id: string): Promise<unknown> {
@@ -23,34 +26,38 @@ export class ShipsService {
   }
 
   public async createShip(body: any, file: any): Promise<unknown> {
-    try {
-      console.log("inicio");
+
       /* const result = await uploadImage(file.path); */
       const response = await shipModel.create({
         ...body,
         /*  image: { imageUrl: result.url, public_Id: result.public_id }, */
       });
+
+      if(!response) {
+        throw new NotFoundError("An error occurred while creating a ship");
+      }
+
       return response;
-    } catch (error: unknown) {
-      throw new NotFoundError("An error occurred while creating a ship");
-    }
   }
 
   public async deleteShip(id: string): Promise<unknown> {
-    try {
+
       const response = await shipModel.findByIdAndDelete(id);
+
+      if(!response) {
+        throw new NotFoundError(`Ship with id: ${id} not found`);
+      }
+
       return response;
-    } catch (error: unknown) {
-      throw new NotFoundError("An error occurred while deleting a ship");
-    }
   }
 
   public async updateShip(id: string, body: any): Promise<unknown> {
-    try {
       const response = await shipModel.findById(id);
+
       if (!response) {
         throw new NotFoundError(`Ship with id: ${id} not found`);
       }
+      
       response.shipName =
         body.shipName !== "" || null ? body.shipName : response.shipName;
       response.shipColor =
@@ -60,9 +67,11 @@ export class ShipsService {
       response.shipYear =
         body.shipYear !== "" ? body.shipYear : response.shipYear;
       await response.save();
+
+      if (!response) {
+        throw new NotFoundError("An error occurred while updating the ship");
+      }
+
       return response;
-    } catch (error: unknown) {
-      throw new NotFoundError("An error occurred while updating a ship");
-    }
   }
 }

@@ -12,7 +12,7 @@ export class RegisterService {
     lastName: string,
     age: string
   ): Promise<{ token: string; user: any }> {
-    try {
+
       const passwordHash = await encrypt(password);
       const body = {
         email,
@@ -31,9 +31,11 @@ export class RegisterService {
         user: user,
       };
 
+      if(!data) {
+        throw new NotFoundError("An error occurred while registering");
+      }
+
       return data;
-    } catch (error) {
-      throw new NotFoundError("An error occurred while registering");
-    }
+
   }
 }
