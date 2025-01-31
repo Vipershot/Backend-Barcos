@@ -30,3 +30,5 @@ app.listen(port, () => {
 });
 
 dbConnect();
+
+export default app;

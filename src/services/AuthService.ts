@@ -27,6 +27,9 @@ export class AuthService {
     user.set("password", undefined, { strict: false });
 
     return { token: await tokenSign(user), user };
+  }
 
+  public getHelloWorld(): string {
+    return "Hello World from AuthService!";
   }
 }
